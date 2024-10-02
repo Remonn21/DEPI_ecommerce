@@ -43,7 +43,7 @@ const products = [
       images: ["link5", "link6"],
    },
    {
-      name: "Sony WH-1000XM4 asdw asdw awsasda  aswasd sadwasdwds  Headphones",
+      name: "Sony WH-1000XM4  Headphones",
       category: "mobile",
       price: 350,
       reviewsAvg: 4.9,

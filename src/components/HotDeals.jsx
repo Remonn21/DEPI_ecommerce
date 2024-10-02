@@ -29,7 +29,7 @@ const HotDeals = ({ products }) => {
 
    return (
       <div className="mt-10">
-         <div className="mb-10 flex flex-1 justify-between">
+         <div className="mb-10 flex flex-1 flex-col items-center justify-between md:flex-row">
             <h2 className="text-[1.4rem] font-bold capitalize">
                Best Deals products
             </h2>
@@ -43,9 +43,9 @@ const HotDeals = ({ products }) => {
                />
             </div>
          </div>
-         <div className="flex flex-wrap gap-8">
+         <div className="flex flex-col flex-wrap gap-8 sm:flex-row">
             <OfferCard
-               className="w-[calc(30%-2rem)]"
+               className="sm:w-[calc(30%-2rem)]"
                title="Iphone 14 Pro Max"
                linkTxt="show now"
                description="Pair text with an icon to focus on your store's features"
@@ -54,7 +54,7 @@ const HotDeals = ({ products }) => {
                textClass="text-white"
                image="https://isotech-demo.myshopify.com/cdn/shop/files/Watch_Banner_7b3ae013-75a3-479c-a76f-7c2eea9d4a9e_360x.png?v=1696738786"
             />
-            <div className="w-full max-w-[70%]">
+            <div className="w-full sm:max-w-[70%]">
                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
                   {products.map((product) => (
                      <ProductCard key={product.name} product={product} />

@@ -1,7 +1,7 @@
 import DesktopNav from "./DesktopNav";
 import Heading from "./Heading";
 import MobileNav from "./MobileNav";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 
 const Header = () => {
    return (

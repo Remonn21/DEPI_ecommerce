@@ -28,7 +28,7 @@ const TrendingProducts = ({ products }) => {
             ))}
          </div>
 
-         <div className="m grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+         <div className="m grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5">
             {products.map(
                (product) =>
                   product.category === openedTab && (

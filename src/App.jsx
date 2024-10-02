@@ -4,6 +4,11 @@ import Layout from "./layout/Layout";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDeatails";
+import Collection from "./pages/Collection";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Faq from "./pages/faq";
+import ProductsPage from "./pages/ProductsPage";
 
 export default function App() {
    return (
@@ -12,7 +17,12 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/products/" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/collection" element={<Collection />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
             {/* <Route path="*" element={<NotFound />} /> */}
          </Route>
       </Routes>

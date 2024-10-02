@@ -44,7 +44,7 @@ const OfferHeading = () => {
                      date={Date.now() + 5 * 24 * 60 * 60 * 1000}
                      renderer={renderer}
                   />
-                  <button className="flex max-w-max items-center gap-2 rounded-lg bg-white px-2 py-2 text-[.8rem] text-black transition duration-300 hover:bg-black hover:text-white">
+                  <button className="hidden max-w-max items-center gap-2 rounded-lg bg-white px-2 py-2 text-[.8rem] text-black transition duration-300 hover:bg-black hover:text-white sm:flex">
                      <span>Shop now</span> <MoveRight size={16} />
                   </button>
                </div>

@@ -102,9 +102,9 @@ const ProductDetails = () => {
             </div>
          )}
 
-         <div className="container mx-auto px-4 py-8">
+         <div className="container mx-auto py-8">
             {/* Product Card */}
-            <div className="flex flex-col items-center justify-between rounded-lg p-6 shadow-lg md:flex-row">
+            <div className="flex flex-col items-center justify-between rounded-lg bg-white p-6 shadow-lg md:flex-row">
                {/* Product Images */}
                <div className="flex w-full flex-col items-center md:w-1/2">
                   <img
@@ -165,25 +165,25 @@ const ProductDetails = () => {
                      </button>
                   </div>
 
-                  <div class="mt-8 flex items-center space-x-4">
-                     <div class="flex space-x-3">
+                  <div className="mt-8 flex items-center space-x-4">
+                     <div className="flex space-x-3">
                         <a
                            href="#"
-                           class="flex h-7 w-7 items-center justify-center rounded-full bg-blue text-white transition hover:bg-indigo-600"
+                           className="flex h-7 w-7 items-center justify-center rounded-full bg-blue text-white transition hover:bg-indigo-600"
                         >
-                           <i class="fab fa-facebook-f"></i>
+                           <i className="fab fa-facebook-f"></i>
                         </a>
                         <a
                            href="#"
-                           class="hover:bg-pink-400 flex h-7 w-7 items-center justify-center rounded-full bg-pink text-white transition"
+                           className="hover:bg-pink-400 flex h-7 w-7 items-center justify-center rounded-full bg-pink text-white transition"
                         >
-                           <i class="fab fa-instagram"></i>
+                           <i className="fab fa-instagram"></i>
                         </a>
                         <a
                            href="#"
-                           class="flex h-7 w-7 items-center justify-center rounded-full bg-blue text-white transition hover:bg-indigo-600"
+                           className="flex h-7 w-7 items-center justify-center rounded-full bg-blue text-white transition hover:bg-indigo-600"
                         >
-                           <i class="fab fa-twitter"></i>
+                           <i className="fab fa-twitter"></i>
                         </a>
                      </div>
                   </div>
@@ -207,7 +207,7 @@ const ProductDetails = () => {
                   )}
                </div>
 
-               <div className="mt-4">
+               <div className="mt-4 rounded-md bg-white p-4 shadow-lg">
                   {activeTab === "description" && (
                      <p>Product description goes here.</p>
                   )}

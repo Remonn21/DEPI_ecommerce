@@ -1,5 +1,5 @@
 import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import { AnimatePresence } from "framer-motion";

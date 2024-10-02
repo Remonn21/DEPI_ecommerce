@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function BlogPost({ post }) {
    return (
       <article className="relative text-white">
@@ -19,3 +21,12 @@ export default function BlogPost({ post }) {
       </article>
    );
 }
+
+BlogPost.propTypes = {
+   post: PropTypes.shape({
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+   }).isRequired,
+};

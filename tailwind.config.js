@@ -107,9 +107,9 @@ export default {
             black: "#000000",
             transparent: "transparent",
 
-            pink: "#FB2E86",
-            red: "#FB2448",
-            yellow: "#F59E0B",
+            pink: { DEFAULT: "#FB2E86" },
+            red: { DEFAULT: "#FB2448" },
+            yellow: { DEFAULT: "#F59E0B" },
             gray: { DEFAULT: "#4B5563" },
             green: "#22C55E",
             blue: {

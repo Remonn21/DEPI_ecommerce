@@ -1,44 +1,70 @@
-import { X } from "lucide-react";
-import PropTypes from "prop-types";
+import { FILTERS } from "@/constant";
+import { cn } from "@/lib/utils";
 
-import { motion } from "framer-motion";
-import { Button } from "./ui/button";
-
-const Sidebar = ({ onClose }) => {
+export default function Sidebar() {
    return (
-      <motion.div
-         initial={{ width: 0 }}
-         animate={{ width: "100%" }}
-         exit={{ width: 0 }}
-         className="absolute inset-0 z-10 bg-black/20"
-      >
-         <div className="min-h-svh max-w-lg bg-white">
-            <div className="bg-gray-100 relative flex gap-3 p-4">
-               <Button className="bg-navyBlue py-0 text-white">Menu</Button>
-               <Button
-                  variant="outline"
-                  className="text-slate text-gray border-navyBlue py-0"
-               >
-                  Categories
-               </Button>
+      <aside className="w-full md:w-64">
+         <div className="bg-white p-4 shadow">
+            <section className="space-y-8">
+               {FILTERS.map(({ title, options }) => (
+                  <Filter key={title}>
+                     <FilterHeader>{title}</FilterHeader>
+                     <ul className="space-y-2">
+                        {options.map((option) => (
+                           <li key={option}>
+                              <FilterOption>{option}</FilterOption>
+                           </li>
+                        ))}
+                     </ul>
+                  </Filter>
+               ))}
+            </section>
 
-               <span
-                  onClick={onClose}
-                  className="absolute right-5 top-0 translate-y-1/2"
-               >
-                  <X size={35} />
-               </span>
+            <div className="mt-4">
+               <input
+                  type="text"
+                  placeholder="$10.00 - $20000.00"
+                  className="w-full rounded-md border border-blue px-3 py-2 text-Purple outline-none placeholder:text-Purple-off/40"
+               />
             </div>
-            <div className="flex flex-col">
-               {/* {links} */}
-               <div></div>
-            </div>
+
+            {/* <h2 className="text-lg mb-4 mt-6 font-semibold">Filter By Color</h2>
+            <div className="flex flex-wrap gap-2">
+               <button className="bg-blue-600 h-6 w-6 rounded-full"></button>
+               <button className="bg-orange-500 h-6 w-6 rounded-full"></button>
+               <button className="bg-yellow-700 h-6 w-6 rounded-full"></button>
+               <button className="bg-green-500 h-6 w-6 rounded-full"></button>
+               <button className="bg-purple-600 h-6 w-6 rounded-full"></button>
+               <button className="bg-sky-400 h-6 w-6 rounded-full"></button>
+            </div> */}
          </div>
-      </motion.div>
+      </aside>
    );
-};
+}
 
-Sidebar.propTypes = {
-   onClose: PropTypes.func.isRequired,
-};
-export default Sidebar;
+function Filter({ children, className }) {
+   return <div className={cn("text-Purple-off", className)}>{children}</div>;
+}
+
+function FilterHeader({ children, className }) {
+   return (
+      <h4
+         className={cn(
+            // todo text-body-md not working here 😂 (text-blue overwrite it)
+            "mb-4 w-fit border-b border-blue text-body-md font-semibold text-blue",
+            className,
+         )}
+      >
+         {children}
+      </h4>
+   );
+}
+
+function FilterOption({ children, className }) {
+   return (
+      <label className={cn("flex items-center", className)}>
+         <input type="checkbox" className="mr-2 selection:text-Purple" />
+         {children}
+      </label>
+   );
+}

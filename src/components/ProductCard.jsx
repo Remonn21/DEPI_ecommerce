@@ -2,14 +2,14 @@ import product1Img from "../../public/product1.webp";
 import producg1Img2 from "../../public/product1before.webp";
 import PropTypes from "prop-types";
 
-import { Heart, Star, StarHalf } from "lucide-react";
+import { DotIcon, Heart, Star, StarHalf } from "lucide-react";
 
 const StarRating = ({ rating, maxRating = 5 }) => {
    const getStarType = (i) => {
       if (i <= rating)
          return (
             <Star
-               className="text-yellow-400 border-none"
+               className="border-none text-yellow-400"
                fill="#facc15"
                key={i}
                size={20}
@@ -63,7 +63,7 @@ const ProductCard = ({ product }) => {
             </div>
          </div>
          <div className="mt-2 flex flex-col gap-2 px-4">
-            <h4 className="line-clamp-2 h-11 font-bold leading-tight">
+            <h4 className="line-clamp-2 h-9 text-small-md font-bold leading-tight">
                {product.name}
             </h4>
 
@@ -78,15 +78,17 @@ const ProductCard = ({ product }) => {
                )}
             </div>
 
-            <div className="flex gap-1">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center">
                <StarRating rating={product.reviewsAvg} />
-               <span className="text-gray-500 text-[13px]">
+               <span className="text-small-sm text-gray-500">
                   {product.reviewsCount} reviews
                </span>
             </div>
-            <div className="text-green-800 flex items-center gap-2">
-               <span className="bg-green-800 size-3 rounded-full"></span>
-               <span>In stock</span>
+            <div className="flex items-center text-green-800">
+               <DotIcon size={20} className="text-green" />
+               <span className="text-green text-small-sm font-bold">
+                  In stock
+               </span>
             </div>
          </div>
       </div>
