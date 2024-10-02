@@ -1,4 +1,5 @@
-# React + Vite
+# DEPI Final Project
+#TEAM: Remon, Assem, Mahmoud Fares and Mohammed el bahrawy
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
