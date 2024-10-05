@@ -4,7 +4,14 @@ import { LayoutGrid, List } from "lucide-react";
 export default function ProductsHeader({ onViewChange, currentView }) {
    return (
       <section className="bg-white shadow">
-         <div className="container mx-auto px-4 py-4">
+         <div className="container mx-auto flex flex-col justify-between px-4 py-4 md:flex-row">
+            <div>
+               <input
+                  type="text"
+                  placeholder="Search by name"
+                  className="w-full min-w-[250] rounded-md border border-gray-200 px-4 py-2 lg:min-w-[500px]"
+               />{" "}
+            </div>
             <nav className="flex flex-wrap items-center justify-center space-x-4 text-navyBlue md:justify-end">
                <span>Per Page:</span>
                <select className="rounded border px-2 py-1">

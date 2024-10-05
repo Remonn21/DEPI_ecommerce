@@ -3,6 +3,7 @@ import producg1Img2 from "../../public/product1before.webp";
 import PropTypes from "prop-types";
 
 import { DotIcon, Heart, Star, StarHalf } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const StarRating = ({ rating, maxRating = 5 }) => {
    const getStarType = (i) => {
@@ -40,8 +41,13 @@ StarRating.propTypes = {
 };
 
 const ProductCard = ({ product }) => {
+   const navigate = useNavigate();
+
    return (
-      <div className="overflow-hidden rounded-lg bg-white pb-4">
+      <div
+         onClick={() => navigate("/products/1")}
+         className="overflow-hidden rounded-lg bg-white pb-4"
+      >
          <div className="relative cursor-pointer">
             <div className="group absolute right-4 top-4 z-10 rounded-full bg-white p-2 shadow-lg transition duration-500 hover:bg-black">
                <Heart className="group-hover:text-white" />
@@ -84,9 +90,9 @@ const ProductCard = ({ product }) => {
                   {product.reviewsCount} reviews
                </span>
             </div>
-            <div className="flex items-center text-green-800">
+            <div className="text-green-800 flex items-center">
                <DotIcon size={20} className="text-green" />
-               <span className="text-green text-small-sm font-bold">
+               <span className="text-small-sm font-bold text-green">
                   In stock
                </span>
             </div>

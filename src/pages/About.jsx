@@ -6,7 +6,7 @@ function App() {
       <div className="min-h-screen px-4 py-8">
          <div className="mx-auto mb-12 max-w-6xl rounded-lg bg-white p-8">
             <h2 className="text-3xl mb-4 font-bold text-gray-800">About Us</h2>
-
+            {/* 
             <p className="text-sm mb-8 text-gray-500">
                <Link to="/" className="text-blue-500 hover:underline">
                   Home
@@ -19,7 +19,7 @@ function App() {
                <Link to="/about" className="text-blue-500 hover:underline">
                   About Us
                </Link>
-            </p>
+            </p> */}
 
             <div className="md:flex md:items-center">
                <div className="md:w-1/2">
@@ -41,7 +41,7 @@ function App() {
                   </p>
                   <Link
                      to="/contact"
-                     className="bg-pink-500 hover:bg-pink-600 rounded-md px-5 py-2 font-semibold text-white transition"
+                     className="rounded-md bg-pink-500 px-5 py-2 font-semibold text-white transition hover:bg-pink-600"
                   >
                      Contact Us
                   </Link>

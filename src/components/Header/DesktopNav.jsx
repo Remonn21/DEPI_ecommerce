@@ -81,7 +81,7 @@ const dropdowns = [
       ],
    },
    {
-      title: "testing3",
+      title: "more",
       href: "/products?category=test",
       links: [
          {
@@ -109,14 +109,14 @@ export default function DesktopNav() {
                <NavigationMenuItem>
                   <Link
                      to="/"
-                     className={`${navigationMenuTriggerStyle()} text-gray font-semibold hover:text-navyBlue`}
+                     className={`${navigationMenuTriggerStyle()} font-semibold text-gray hover:text-navyBlue`}
                   >
                      Home
                   </Link>
                </NavigationMenuItem>
                {dropdowns.map((item) => (
                   <NavigationMenuItem key={item.title}>
-                     <NavigationMenuTrigger className="text-gray font-semibold hover:text-navyBlue">
+                     <NavigationMenuTrigger className="font-semibold text-gray hover:text-navyBlue">
                         <Link className="" to={item.href}>
                            {item.title}
                         </Link>
@@ -135,7 +135,7 @@ export default function DesktopNav() {
                                        </h2>
                                        {component.links.map((link) => (
                                           <Link
-                                             className="text-gray text-small-xl hover:text-navyBlue"
+                                             className="text-small-xl text-gray hover:text-navyBlue"
                                              key={link.title}
                                              to={link.href}
                                           >
@@ -150,6 +150,22 @@ export default function DesktopNav() {
                      </NavigationMenuContent>
                   </NavigationMenuItem>
                ))}
+               <NavigationMenuItem>
+                  <Link
+                     to="/about"
+                     className={`${navigationMenuTriggerStyle()} font-semibold text-gray hover:text-navyBlue`}
+                  >
+                     About
+                  </Link>
+               </NavigationMenuItem>{" "}
+               <NavigationMenuItem>
+                  <Link
+                     to="/faq"
+                     className={`${navigationMenuTriggerStyle()} font-semibold text-gray hover:text-navyBlue`}
+                  >
+                     FAQ
+                  </Link>
+               </NavigationMenuItem>
             </NavigationMenuList>
          </NavigationMenu>
       </div>
