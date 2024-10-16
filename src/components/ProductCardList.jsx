@@ -2,18 +2,22 @@ import { Star, ShoppingCart, Heart, Search } from "lucide-react";
 
 export default function ProductCardList({
    name,
-   currentPrice,
-   originalPrice,
+   discountPrice,
+   price,
    rating,
    description,
-   image,
+   images,
+   onClick,
    colors,
 }) {
    return (
-      <div className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md md:flex-row">
+      <div
+         onClick={onClick}
+         className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md md:flex-row"
+      >
          <div className="w-full p-4 md:w-1/3">
             <img
-               src={image}
+               src={images[0]}
                alt={name}
                className="h-64 w-full rounded-lg object-cover"
             />
@@ -27,21 +31,25 @@ export default function ProductCardList({
                   </h2>
 
                   <div className="flex space-x-1">
-                     {colors.map((color, index) => (
+                     {/* {colors.map((color, index) => (
                         <div
                            key={index}
                            className={`h-4 w-4 rounded-full bg-${color}-500`}
                         ></div>
-                     ))}
+                     ))} */}
                   </div>
                </div>
 
                <div className="mb-2 flex items-center">
-                  <span className="text-body-md font-bold text-blue-off">
-                     ${currentPrice.toFixed(2)}
-                  </span>
-                  <span className="ml-2 text-body-sm text-pink line-through">
-                     ${originalPrice.toFixed(2)}
+                  {discountPrice && (
+                     <span className="text-body-md font-bold text-blue-off">
+                        ${discountPrice.toFixed(2)}
+                     </span>
+                  )}
+                  <span
+                     className={`ml-2 text-body-sm text-pink ${discountPrice ? "line-through" : ""}`}
+                  >
+                     ${price.toFixed(2)}
                   </span>
                </div>
 
@@ -49,11 +57,11 @@ export default function ProductCardList({
                   {[...Array(5)].map((_, i) => (
                      <Star
                         key={i}
-                        className={`size-5 ${i < rating ? "text-gold fill-gold" : "text-gray-200 fill-gray-200"}`}
+                        className={`size-5 ${i < rating ? "text-gold fill-gold" : "fill-gray-200 text-gray-200"}`}
                      />
                   ))}
                </div>
-               <p className="text-gray-100 mb-4">{description}</p>
+               <p className="mb-4 text-gray-100">{description}</p>
             </div>
 
             <div className="flex space-x-4">

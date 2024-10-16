@@ -3,10 +3,9 @@ import { useState } from "react";
 import ProductCard from "./ProductCard";
 import PropTypes from "prop-types";
 
-const tabs = ["mobile", "watch", "camera", "accessories", "speaker"];
-
 const TrendingProducts = ({ products }) => {
-   const [openedTab, setOpenedTab] = useState("mobile");
+   const [openedTab, setOpenedTab] = useState(0);
+   const tabs = [...new Set(products.map((product) => product.category.name))];
 
    const handleOpenTab = (tab) => {
       setOpenedTab(tab);
@@ -17,11 +16,11 @@ const TrendingProducts = ({ products }) => {
          <h1 className="text-h4 font-bold">Trending products</h1>
 
          <div className="mb-5 mt-7 flex gap-5 overflow-x-auto">
-            {tabs.map((item) => (
+            {tabs.map((item, index) => (
                <button
-                  className={`text-body-sm font-bold capitalize ${item === openedTab ? "border-b-2 border-navyBlue text-navyBlue" : "text-gray-600"}`}
+                  className={`text-body-sm font-bold capitalize ${item === tabs[openedTab] ? "border-b-2 border-navyBlue text-navyBlue" : "text-gray-600"}`}
                   key={item}
-                  onClick={() => handleOpenTab(item)}
+                  onClick={() => handleOpenTab(index)}
                >
                   {item}
                </button>
@@ -31,7 +30,7 @@ const TrendingProducts = ({ products }) => {
          <div className="m grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5">
             {products.map(
                (product) =>
-                  product.category === openedTab && (
+                  product.category.name === tabs[openedTab] && (
                      <ProductCard key={product.name} product={product} />
                   ),
             )}

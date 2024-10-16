@@ -1,33 +1,33 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import BrandLogos from "@/components/BrandLogos";
+import { useParams } from "react-router-dom";
+import { useProductById } from "@/hooks/useProducts";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/slice/cart.slice";
+import { toggleWishList } from "@/redux/slice/wishlist.slice";
 
 const ProductDetails = () => {
+   const { id } = useParams();
+
+   const { data, isLoading } = useProductById(id);
+
+   const product = useMemo(() => data?.data?.product, [data]);
+
    const [wishlist, setWishlist] = useState({});
    const [activeTab, setActiveTab] = useState("description");
-   const [mainImage, setMainImage] = useState(
-      "../../public/images/mainbag.jpg",
-   );
+   const [mainImage, setMainImage] = useState(0);
    const [showToast, setShowToast] = useState({
       show: false,
       message: "",
       type: "",
    });
-   const [cart, setCart] = useState([]);
+   // const [cart, setCart] = useState([]);
+   const dispatch = useDispatch();
 
-   const product = {
-      id: 1,
-      name: "Playwood Arm Chair",
-      price: 32.0,
-      discountPrice: 40.0,
-      rating: 4.5,
-      images: [
-         "../../public/images/side1.jpg",
-         "../../public/images/side2.jpg",
-         "../../public/images/side3.jpg",
-         "../../public/images/mainbag.jpg",
-      ],
-      category: "Furniture",
+   const handleMainImageChange = (idx) => {
+      if (idx > product.images.length - 1) return;
+      setMainImage(idx);
    };
 
    const relatedProducts = [
@@ -61,25 +61,23 @@ const ProductDetails = () => {
       },
    ];
 
-   const toggleWishlist = (id) => {
-      const action = wishlist[id] ? "removed" : "added";
-      setWishlist((prevWishlist) => ({
-         ...prevWishlist,
-         [id]: !prevWishlist[id],
-      }));
-      setShowToast({
-         show: true,
-         message: `Item ${action} to wishlist!`,
-         type: wishlist[id] ? "wishlist-remove" : "wishlist-add",
-      });
-      setTimeout(
-         () => setShowToast({ show: false, message: "", type: "" }),
-         4000,
-      );
+   const toggleWishListHandler = (id) => {
+      // const action = wishlist[id] ? "removed" : "added";
+      console.log("add", id);
+      dispatch(toggleWishList(id));
+      // setShowToast({
+      //    show: true,
+      //    message: `Item ${action} to wishlist!`,
+      //    type: wishlist[id] ? "wishlist-remove" : "wishlist-add",
+      // });
+      // setTimeout(
+      //    () => setShowToast({ show: false, message: "", type: "" }),
+      //    4000,
+      // );
    };
 
-   const addToCart = (product) => {
-      setCart((prevCart) => [...prevCart, product]);
+   const addToCartHandler = (product) => {
+      dispatch(addToCart({ ...product, quantity: 1 }));
       setShowToast({
          show: true,
          message: "Added to cart!",
@@ -90,6 +88,10 @@ const ProductDetails = () => {
          4000,
       );
    };
+
+   if (isLoading) {
+      return <div>Loading...</div>;
+   }
 
    return (
       <>
@@ -108,20 +110,24 @@ const ProductDetails = () => {
                {/* Product Images */}
                <div className="flex w-full flex-col items-center md:w-1/2">
                   <img
-                     src={mainImage}
+                     src={product.images[mainImage]}
                      alt="Main Product"
                      className="mb-4 h-80 w-full rounded-lg object-contain"
                   />
                   <div className="flex space-x-4">
-                     {product.images.map((image, idx) => (
-                        <img
-                           key={idx}
-                           src={image}
-                           alt={`Thumbnail ${idx + 1}`}
-                           className="h-20 w-20 cursor-pointer rounded-lg shadow-sm transition-all hover:opacity-75"
-                           onClick={() => setMainImage(image)}
-                        />
-                     ))}
+                     {product.images.map((image, idx) =>
+                        idx === mainImage ? (
+                           ""
+                        ) : (
+                           <img
+                              key={idx}
+                              src={image}
+                              alt={`Thumbnail ${idx + 1}`}
+                              className="h-20 w-20 cursor-pointer rounded-lg shadow-sm transition-all hover:opacity-75"
+                              onClick={() => handleMainImageChange(idx)}
+                           />
+                        ),
+                     )}
                   </div>
                </div>
 
@@ -138,25 +144,24 @@ const ProductDetails = () => {
                      <span className="text-lg font-semibold text-black line-through">
                         ${product.price}
                      </span>
-                     <span className="text-xl font-bold text-red">
-                        ${product.discountPrice}
-                     </span>
+                     {product.discountPrice && (
+                        <span className="text-xl font-bold text-red">
+                           ${product.discountPrice}
+                        </span>
+                     )}
                   </div>
-                  <p className="text-gray mt-4">
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Reprehenderit.
-                  </p>
+                  <p className="mt-4 text-gray">{product.description}</p>
 
                   {/* Add to Cart and Wishlist */}
                   <div className="mt-6 flex space-x-4">
                      <button
                         className="rounded-lg bg-pink px-6 py-2 text-white shadow transition hover:bg-red"
-                        onClick={() => addToCart(product)}
+                        onClick={() => addToCartHandler(product)}
                      >
                         Add to Cart
                      </button>
                      <button
-                        onClick={() => toggleWishlist(product.id)}
+                        onClick={() => toggleWishListHandler(product._id)}
                         className={`transition-colors ${
                            wishlist[product.id] ? "text-red" : "text-black"
                         } text-2xl hover:text-red`}
@@ -175,7 +180,7 @@ const ProductDetails = () => {
                         </a>
                         <a
                            href="#"
-                           className="hover:bg-pink-400 flex h-7 w-7 items-center justify-center rounded-full bg-pink text-white transition"
+                           className="flex h-7 w-7 items-center justify-center rounded-full bg-pink text-white transition hover:bg-pink-400"
                         >
                            <i className="fab fa-instagram"></i>
                         </a>
@@ -208,9 +213,7 @@ const ProductDetails = () => {
                </div>
 
                <div className="mt-4 rounded-md bg-white p-4 shadow-lg">
-                  {activeTab === "description" && (
-                     <p>Product description goes here.</p>
-                  )}
+                  {activeTab === "description" && <p>{product.details}</p>}
                   {activeTab === "additional-info" && (
                      <p>Additional information about the product.</p>
                   )}

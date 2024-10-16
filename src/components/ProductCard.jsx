@@ -1,10 +1,8 @@
-import product1Img from "../../public/product1.webp";
-import producg1Img2 from "../../public/product1before.webp";
 import PropTypes from "prop-types";
 
-import { DotIcon, Heart, Star, StarHalf } from "lucide-react";
+import { Heart, Star, StarHalf } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
+import { GoDotFill } from "react-icons/go";
 const StarRating = ({ rating, maxRating = 5 }) => {
    const getStarType = (i) => {
       if (i <= rating)
@@ -44,10 +42,7 @@ const ProductCard = ({ product }) => {
    const navigate = useNavigate();
 
    return (
-      <div
-         onClick={() => navigate("/products/1")}
-         className="overflow-hidden rounded-lg bg-white pb-4"
-      >
+      <div className="overflow-hidden rounded-lg bg-white pb-4">
          <div className="relative cursor-pointer">
             <div className="group absolute right-4 top-4 z-10 rounded-full bg-white p-2 shadow-lg transition duration-500 hover:bg-black">
                <Heart className="group-hover:text-white" />
@@ -55,14 +50,15 @@ const ProductCard = ({ product }) => {
             <div
                className="group relative overflow-hidden"
                style={{ paddingBottom: "100%" }}
+               onClick={() => navigate(`/products/${product._id}`)}
             >
                <img
-                  src={product1Img}
+                  src={product.images[0]}
                   className="absolute block transition duration-500 group-hover:opacity-0"
                   alt=""
                />
                <img
-                  src={producg1Img2}
+                  src={product.images[1]}
                   className="duration-400 absolute block scale-90 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
                   alt=""
                />
@@ -85,13 +81,13 @@ const ProductCard = ({ product }) => {
             </div>
 
             <div className="flex flex-col gap-1 sm:flex-row sm:items-center">
-               <StarRating rating={product.reviewsAvg} />
+               <StarRating rating={product.rating} />
                <span className="text-small-sm text-gray-500">
-                  {product.reviewsCount} reviews
+                  {product?.reviewsCount} reviews
                </span>
             </div>
             <div className="text-green-800 flex items-center">
-               <DotIcon size={20} className="text-green" />
+               <GoDotFill className="text-green" />
                <span className="text-small-sm font-bold text-green">
                   In stock
                </span>
@@ -106,7 +102,7 @@ ProductCard.propTypes = {
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       discountPrice: PropTypes.number,
-      reviewsAvg: PropTypes.number.isRequired,
+      rating: PropTypes.number.isRequired,
       reviewsCount: PropTypes.number.isRequired,
    }).isRequired,
 };

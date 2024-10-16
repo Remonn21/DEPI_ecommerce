@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import ProductCardGrid from "./ProductCardGrid";
 import ProductCardList from "./ProductCardList";
 
 export default function ProductList({ products, view }) {
+   const navigate = useNavigate();
+
    return (
       <div
          className={
@@ -12,9 +15,17 @@ export default function ProductList({ products, view }) {
       >
          {products.map((product) =>
             view === "list" ? (
-               <ProductCardList key={product.id} {...product} />
+               <ProductCardList
+                  onClick={() => navigate(`/products/${product._id}`)}
+                  key={product._id}
+                  {...product}
+               />
             ) : (
-               <ProductCardGrid key={product.id} {...product} />
+               <ProductCardGrid
+                  onClick={() => navigate(`/products/${product._id}`)}
+                  key={product._id}
+                  {...product}
+               />
             ),
          )}
       </div>
