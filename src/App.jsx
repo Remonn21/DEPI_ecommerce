@@ -5,7 +5,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDeatails";
 import About from "./pages/About";
-import ContactUs from "./pages/Contact";
+import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
 import ProductsPage from "./pages/ProductsPage";
 import ShoppingCardPage from "./pages/ShoppingCardPage";
@@ -26,22 +26,10 @@ export default function App() {
             <Route path="/order-completed" element={<OrderCompletedPage />} />
             <Route path="/hekto-demo" element={<HektoDemoPage />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="*" element={<NotFound />} />
          </Route>
       </Routes>
    );
 }
-
-// function Layout() {
-//    return (
-//       <div className="flex min-h-screen flex-col font-Lato">
-//          <main className="flex-1">
-//             <Outlet />
-//          </main>
-
-//          {/* <Footer /> */}
-//       </div>
-//    );
-// }

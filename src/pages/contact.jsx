@@ -1,4 +1,4 @@
-const ContactUs = () => {
+const Contact = () => {
    return (
       <div className="flex min-h-screen flex-col items-center justify-center p-8">
          <div className="w-full max-w-6xl bg-white p-8">
@@ -33,7 +33,7 @@ const ContactUs = () => {
                   <div className="mt-4 flex space-x-2">
                      <span className="h-4 w-4 rounded-full bg-purple-500"></span>
                      <span className="h-4 w-4 rounded-full bg-blue-500"></span>
-                     <span className="bg-pink-500 h-4 w-4 rounded-full"></span>
+                     <span className="h-4 w-4 rounded-full bg-pink-500"></span>
                   </div>
                </div>
 
@@ -47,15 +47,15 @@ const ContactUs = () => {
                         Tel: 01211609328
                      </div>
                      <div className="flex items-center">
-                        <span className="bg-pink-500 mr-2 h-3 w-3 rounded-full"></span>
+                        <span className="mr-2 h-3 w-3 rounded-full bg-pink-500"></span>
                         Email: shop@store.com
                      </div>
                      <div className="flex items-center">
-                        <span className="mr-2 h-3 w-3 rounded-full bg-green-500"></span>
+                        <span className="bg-green-500 mr-2 h-3 w-3 rounded-full"></span>
                         20 Margaret St, London, UK
                      </div>
                      <div className="flex items-center">
-                        <span className="bg-red-500 mr-2 h-3 w-3 rounded-full"></span>
+                        <span className="mr-2 h-3 w-3 rounded-full bg-red-500"></span>
                         Support Forum for over 24hr
                      </div>
                   </div>
@@ -96,7 +96,7 @@ const ContactUs = () => {
                      ></textarea>
                      <button
                         type="submit"
-                        className="bg-pink-500 text-sm w-32 rounded-lg px-4 py-2 text-white"
+                        className="text-sm w-32 rounded-lg bg-pink-500 px-4 py-2 text-white"
                      >
                         Send Mail
                      </button>
@@ -116,4 +116,4 @@ const ContactUs = () => {
    );
 };
 
-export default ContactUs;
+export default Contact;
