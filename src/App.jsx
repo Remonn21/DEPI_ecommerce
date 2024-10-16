@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Layout from "./layout/Layout";
 import SignUp from "./pages/SignUp";
@@ -11,7 +11,7 @@ import ProductsPage from "./pages/ProductsPage";
 import ShoppingCardPage from "./pages/ShoppingCardPage";
 import OrderCompletedPage from "./pages/OrderCompletedPage";
 import HektoDemoPage from "./pages/HektoDemoPage";
-import NotFound from "./pages/notfound";
+// import NotFound from "./pages/notfound";
 
 export default function App() {
    return (
@@ -28,7 +28,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             {/* <Route path="/contact" element={<Contact />} /> */}
             {/* <Route path="/faq" element={<Faq />} /> */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/" />} />
          </Route>
       </Routes>
    );
