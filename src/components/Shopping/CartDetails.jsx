@@ -1,43 +1,13 @@
+import { useDispatch } from "react-redux";
 import CartItem from "./CartItem";
-export default function CartDetails() {
-   const data = [
-      {
-         id: 1,
-         name: "Product 2",
-         price: 100,
-         quantity: 2,
-         image: "https://via.placeholder.com/100",
-         color: "black",
-         size: "M",
-      },
-      {
-         id: 2,
-         name: "Product 1",
-         price: 100,
-         quantity: 2,
-         image: "https://via.placeholder.com/100",
-         color: "black",
-         size: "M",
-      },
-      {
-         id: 3,
-         name: "Product 3",
-         price: 100,
-         quantity: 2,
-         image: "https://via.placeholder.com/100",
-         color: "black",
-         size: "M",
-      },
-      {
-         id: 4,
-         name: "Product 4",
-         price: 100,
-         quantity: 2,
-         image: "https://via.placeholder.com/100",
-         color: "black",
-         size: "M",
-      },
-   ];
+import { clearCart } from "@/redux/slice/cart.slice";
+export default function CartDetails({ cartItems }) {
+   const dispatch = useDispatch();
+
+   const clearCartHandler = () => {
+      dispatch(clearCart());
+   };
+
    return (
       <div>
          <div className="section-header my-5 flex items-center justify-between text-body-md">
@@ -46,14 +16,17 @@ export default function CartDetails() {
             <h2>quantity</h2>
             <h2>total</h2>
          </div>
-         {data.map((product) => (
-            <CartItem data={product} key={product.id} />
+         {cartItems.map((product) => (
+            <CartItem data={product} key={product._id} />
          ))}
          <div className="buttons flex justify-between">
-            <button className="btn mt-10 bg-pink px-7 py-3 text-white">
+            {/* <button className="btn mt-10 bg-pink px-7 py-3 text-white">
                Update Cart
-            </button>
-            <button className="btn mt-10 bg-pink px-7 py-3 text-white">
+            </button> */}
+            <button
+               onClick={clearCartHandler}
+               className="btn mt-10 bg-pink px-7 py-3 text-white"
+            >
                Clear Cart
             </button>
          </div>

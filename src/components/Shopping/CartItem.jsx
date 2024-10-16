@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { addToCart, removeFromCart } from "@/redux/slice/cart.slice";
+import { useDispatch } from "react-redux";
 
 export default function CartItem({
    //  id,
@@ -11,28 +12,41 @@ export default function CartItem({
    //  size,
    data,
 }) {
-   const [quantity, setQuantity] = useState(data.quantity ? data.quantity : 0);
+   const dispatch = useDispatch();
+
    const handleChange = (e) => {
       console.log(e);
       console.log(e.target);
 
       e.target.value == "+"
-         ? setQuantity((prev) => prev + 1)
-         : setQuantity((prev) => prev - 1);
+         ? dispatch(addToCart({ ...data, quantity: 1 }))
+         : dispatch(removeFromCart({ id: data._id, quantity: 1 }));
    };
+
+   const removeItemHandler = () => {
+      dispatch(removeFromCart(data._id));
+   };
+
    return (
       <article className="border-grey-off my-5 flex items-center justify-between border-b-2 pb-3">
          <div className="product flex items-center gap-5">
             <div className="img-holder relative">
-               <img src={data.image} alt="" />
-               <button className="absolute -right-1 -top-2 rounded-full bg-black px-1 text-small-md text-white">
+               <img
+                  src={data.images[0]}
+                  className="h-[100px] w-[100px]"
+                  alt=""
+               />
+               <button
+                  onClick={removeItemHandler}
+                  className="absolute -right-1 -top-2 rounded-full bg-black px-1 text-small-md text-white"
+               >
                   X
                </button>
             </div>
             <div className="">
                <h3>{data.name}</h3>
-               <p className="text-grey">Color: {data.color}</p>
-               <p className="text-grey">Size: {data.size}</p>
+               {/* <p className="text-grey">Color: {data.color}</p>
+               <p className="text-grey">Size: {data.size}</p> */}
             </div>
          </div>
          <h3>${data.price}</h3>
@@ -46,7 +60,9 @@ export default function CartItem({
                   >
                      -
                   </button>
-                  <span className="bg-grey-off text-grey px-3">{quantity}</span>
+                  <span className="bg-grey-off text-grey px-3">
+                     {data.quantity}
+                  </span>
                   <button
                      className="bg-grey-dark text-off px-2"
                      onClick={(e) => handleChange(e)}
@@ -55,7 +71,7 @@ export default function CartItem({
                      +
                   </button>
                </div>
-               <h3>${data.price * quantity}</h3>
+               <h3>${data.price * data.quantity}</h3>
             </>
          )}
       </article>

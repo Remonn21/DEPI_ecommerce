@@ -1,11 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
-import { FaHeart } from "react-icons/fa";
+import { useMemo, useState } from "react";
+import {
+   FaFacebookSquare,
+   FaHeart,
+   FaInstagram,
+   FaTwitter,
+} from "react-icons/fa";
 import BrandLogos from "@/components/BrandLogos";
 import { useParams } from "react-router-dom";
 import { useProductById } from "@/hooks/useProducts";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slice/cart.slice";
 import { toggleWishList } from "@/redux/slice/wishlist.slice";
+import { toast } from "sonner";
 
 const ProductDetails = () => {
    const { id } = useParams();
@@ -14,17 +20,12 @@ const ProductDetails = () => {
 
    const product = useMemo(() => data?.data?.product, [data]);
 
-   const [wishlist, setWishlist] = useState({});
    const [activeTab, setActiveTab] = useState("description");
    const [mainImage, setMainImage] = useState(0);
-   const [showToast, setShowToast] = useState({
-      show: false,
-      message: "",
-      type: "",
-   });
+
    // const [cart, setCart] = useState([]);
    const dispatch = useDispatch();
-
+   const wishlist = useSelector((state) => state.wishlist);
    const handleMainImageChange = (idx) => {
       if (idx > product.images.length - 1) return;
       setMainImage(idx);
@@ -62,31 +63,14 @@ const ProductDetails = () => {
    ];
 
    const toggleWishListHandler = (id) => {
-      // const action = wishlist[id] ? "removed" : "added";
-      console.log("add", id);
+      const action = wishlist.items.includes(id) ? "removed" : "added";
       dispatch(toggleWishList(id));
-      // setShowToast({
-      //    show: true,
-      //    message: `Item ${action} to wishlist!`,
-      //    type: wishlist[id] ? "wishlist-remove" : "wishlist-add",
-      // });
-      // setTimeout(
-      //    () => setShowToast({ show: false, message: "", type: "" }),
-      //    4000,
-      // );
+      toast.info(`Item ${action} to wishlist!`);
    };
 
    const addToCartHandler = (product) => {
       dispatch(addToCart({ ...product, quantity: 1 }));
-      setShowToast({
-         show: true,
-         message: "Added to cart!",
-         type: "cart-add",
-      });
-      setTimeout(
-         () => setShowToast({ show: false, message: "", type: "" }),
-         4000,
-      );
+      toast.success("added to cart");
    };
 
    if (isLoading) {
@@ -95,14 +79,14 @@ const ProductDetails = () => {
 
    return (
       <>
-         {/* Toast Notification */}
+         {/* Toast Notification
          {showToast.show && (
             <div
                className={`fixed right-4 top-4 z-50 rounded-lg p-4 shadow-xl transition-opacity duration-500 ${showToast.type === "cart-add" ? "bg-green text-white" : ""} ${showToast.type === "wishlist-add" ? "bg-blue text-white" : ""} ${showToast.type === "wishlist-remove" ? "bg-red text-white" : ""}`}
             >
                {showToast.message}
             </div>
-         )}
+         )} */}
 
          <div className="container mx-auto py-8">
             {/* Product Card */}
@@ -163,7 +147,9 @@ const ProductDetails = () => {
                      <button
                         onClick={() => toggleWishListHandler(product._id)}
                         className={`transition-colors ${
-                           wishlist[product.id] ? "text-red" : "text-black"
+                           wishlist.items.includes(product._id)
+                              ? "text-red"
+                              : "text-black"
                         } text-2xl hover:text-red`}
                      >
                         <FaHeart />
@@ -176,19 +162,19 @@ const ProductDetails = () => {
                            href="#"
                            className="flex h-7 w-7 items-center justify-center rounded-full bg-blue text-white transition hover:bg-indigo-600"
                         >
-                           <i className="fab fa-facebook-f"></i>
+                           <FaFacebookSquare />
                         </a>
                         <a
                            href="#"
                            className="flex h-7 w-7 items-center justify-center rounded-full bg-pink text-white transition hover:bg-pink-400"
                         >
-                           <i className="fab fa-instagram"></i>
+                           <FaInstagram />
                         </a>
                         <a
                            href="#"
                            className="flex h-7 w-7 items-center justify-center rounded-full bg-blue text-white transition hover:bg-indigo-600"
                         >
-                           <i className="fab fa-twitter"></i>
+                           <FaTwitter />
                         </a>
                      </div>
                   </div>
@@ -239,7 +225,9 @@ const ProductDetails = () => {
                                  ? "text-red"
                                  : "text-black"
                            }`}
-                           onClick={() => toggleWishlist(relatedProduct.id)}
+                           onClick={() =>
+                              toggleWishListHandler(relatedProduct.id)
+                           }
                         >
                            <FaHeart />
                         </button>
