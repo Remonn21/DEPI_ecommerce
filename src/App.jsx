@@ -5,8 +5,8 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDeatails";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Faq from "./pages/faq";
+import ContactUs from "./pages/Contact";
+import Faq from "./pages/Faq";
 import ProductsPage from "./pages/ProductsPage";
 import ShoppingCardPage from "./pages/ShoppingCardPage";
 import OrderCompletedPage from "./pages/OrderCompletedPage";
@@ -26,7 +26,7 @@ export default function App() {
             <Route path="/order-completed" element={<OrderCompletedPage />} />
             <Route path="/hekto-demo" element={<HektoDemoPage />} />
             <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="*" element={<NotFound />} />
          </Route>
