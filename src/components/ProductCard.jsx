@@ -1,51 +1,31 @@
 import PropTypes from "prop-types";
 
-import { Heart, Star, StarHalf } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
-const StarRating = ({ rating, maxRating = 5 }) => {
-   const getStarType = (i) => {
-      if (i <= rating)
-         return (
-            <Star
-               className="border-none text-yellow-400"
-               fill="#facc15"
-               key={i}
-               size={20}
-            />
-         );
-      if (i - 0.5 <= rating)
-         return (
-            <StarHalf
-               size={20}
-               className="text-yellow-400"
-               fill="#facc15"
-               key={i}
-            />
-         );
-      return <Star className="text-gray-700" size={20} key={i} />;
-   };
-
-   return (
-      <div className="flex">
-         {Array.from({ length: maxRating }, (_, i) => getStarType(i + 1))}
-      </div>
-   );
-};
-
-StarRating.propTypes = {
-   rating: PropTypes.number.isRequired,
-   maxRating: PropTypes.number,
-};
+import { useDispatch, useSelector } from "react-redux";
+import { toggleWishList } from "@/redux/slice/wishlist.slice";
+import { FaHeart } from "react-icons/fa";
+import StarRating from "./StarRating";
 
 const ProductCard = ({ product }) => {
+   const dispatch = useDispatch();
    const navigate = useNavigate();
+   const wishlist = useSelector((state) => state.wishlist);
+
+   const toggleWishListHandler = () => {
+      dispatch(toggleWishList(product._id));
+   };
 
    return (
       <div className="overflow-hidden rounded-lg bg-white pb-4">
          <div className="relative cursor-pointer">
-            <div className="group absolute right-4 top-4 z-10 rounded-full bg-white p-2 shadow-lg transition duration-500 hover:bg-black">
-               <Heart className="group-hover:text-white" />
+            <div
+               onClick={toggleWishListHandler}
+               className="group absolute right-4 top-4 z-10 rounded-full bg-white p-2 shadow-lg transition duration-500 hover:bg-black"
+            >
+               <FaHeart
+                  className={`${wishlist.items.includes(product._id) ? "text-red" : ""} size-5 group-hover:text-red`}
+               />
             </div>
             <div
                className="group relative overflow-hidden"
@@ -83,14 +63,32 @@ const ProductCard = ({ product }) => {
             <div className="flex flex-col gap-1 sm:flex-row sm:items-center">
                <StarRating rating={product.rating} />
                <span className="text-small-sm text-gray-500">
-                  {product?.reviewsCount} reviews
+                  {product?.reviews.length || 0} reviews
                </span>
             </div>
             <div className="text-green-800 flex items-center">
-               <GoDotFill className="text-green" />
-               <span className="text-small-sm font-bold text-green">
-                  In stock
-               </span>
+               {product.quantity > 10 ? (
+                  <>
+                     <GoDotFill className="text-green" />
+                     <span className="text-small-sm font-bold text-green">
+                        In stock
+                     </span>
+                  </>
+               ) : product.quantity > 0 ? (
+                  <>
+                     <GoDotFill className="text-orange-500" />
+                     <span className="text-small-sm font-bold text-orange-500">
+                        {product.quantity} left on stock
+                     </span>
+                  </>
+               ) : (
+                  <>
+                     <GoDotFill className="text-red-600" />
+                     <span className="text-small-sm font-bold text-red-600">
+                        out of stock
+                     </span>
+                  </>
+               )}
             </div>
          </div>
       </div>
@@ -99,11 +97,14 @@ const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
    product: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
+      images: PropTypes.array.isRequired,
       price: PropTypes.number.isRequired,
       discountPrice: PropTypes.number,
       rating: PropTypes.number.isRequired,
-      reviewsCount: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+      reviews: PropTypes.array.isRequired,
    }).isRequired,
 };
 

@@ -7,7 +7,6 @@ import { useHomeStatistics } from "@/hooks/useProducts";
 export default function Home() {
    const { data: results, isLoading } = useHomeStatistics();
 
-   console.log(results?.data);
    if (!results && isLoading) {
       return <div>Loading...</div>;
    }

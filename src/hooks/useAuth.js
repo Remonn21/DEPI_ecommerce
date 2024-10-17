@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import { toast } from "sonner";
 
 export const useAuth = () => {
-   return useMutation(login, {
+   const { mutateAsync: loginUser, isLoading } = useMutation(login, {
       onSuccess: (data) => {
          console.log(data);
          // toast.info(`welcome back ${data.}`)
@@ -12,4 +12,6 @@ export const useAuth = () => {
          toast.error(error.response.data.message);
       },
    });
+
+   return { loginUser, isLoading };
 };

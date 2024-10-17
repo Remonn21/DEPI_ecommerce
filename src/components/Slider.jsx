@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-// import img from "../../public/2_f639d039-1b63-405c-ab7d-4561d7871d76.webp";
-// import img2 from "../../public/slider2.webp";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
 
@@ -47,11 +46,11 @@ const Slider = ({ sliderData }) => {
    };
 
    return (
-      <div className="relative mx-auto h-full w-full overflow-hidden">
+      <div className="relative mx-auto flex h-full w-full overflow-hidden">
          <AnimatePresence initial={false}>
             <motion.div
                key={currentSlide}
-               className="absolute inset-0"
+               className="absolute inset-0 min-w-full"
                initial="enter"
                animate="center"
                exit="exit"
@@ -61,42 +60,44 @@ const Slider = ({ sliderData }) => {
                   initial={{ scale: 0.9 }}
                   animate={{
                      scale: [1.2, 1],
-                     transition: { duration: 0.9 },
+                     transition: { duration: 0.9, delay: 0.4 },
                   }}
                   src={sliderData[currentSlide].image}
                   alt={sliderData[currentSlide].title}
                   className="h-[40svh] w-full rounded-md object-cover md:h-full"
                />
 
-               <div className="absolute inset-0 -top-6 flex translate-y-1/4 flex-col justify-start gap-4 p-8 text-black md:max-w-[50%] md:text-white">
-                  <motion.h2
-                     variants={textVariant}
-                     initial={"enter"}
-                     animate="center"
-                     exit="exit"
-                     className="text-h4 font-bold"
-                  >
-                     {sliderData[currentSlide].title}
-                  </motion.h2>
-                  <motion.p
-                     variants={textVariant}
-                     initial={{ opacity: 0, y: -40 }}
-                     animate={{
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                           duration: 1.2,
-                           delay: 0.4,
-                        },
-                     }}
-                     exit="exit"
-                     className="font-normal text-[13ox] text-gray-300"
-                  >
-                     {sliderData[currentSlide].description}
-                  </motion.p>
-                  <motion.button className="flex max-w-fit items-center gap-2 rounded-lg bg-white px-4 py-2 text-[15px] text-black transition duration-300 hover:bg-black hover:text-white">
-                     <span>Shop now</span> <MoveRight size={16} />
-                  </motion.button>
+               <div className="inset-0 -top-6 bg-white p-8 text-black md:absolute md:max-w-[50%] md:translate-y-1/4 md:bg-transparent md:text-white">
+                  <div className="space-y-6">
+                     <motion.h2
+                        variants={textVariant}
+                        initial={"enter"}
+                        animate="center"
+                        exit="exit"
+                        className="text-h4 font-bold"
+                     >
+                        {sliderData[currentSlide].title}
+                     </motion.h2>
+                     <motion.p
+                        variants={textVariant}
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{
+                           opacity: 1,
+                           y: 0,
+                           transition: {
+                              duration: 1.2,
+                              delay: 0.4,
+                           },
+                        }}
+                        exit="exit"
+                        className="font-normal text-[13ox] text-gray-800 md:text-gray-300"
+                     >
+                        {sliderData[currentSlide].description}
+                     </motion.p>
+                     <motion.button className="flex max-w-fit items-center gap-2 rounded-lg bg-navyBlue px-4 py-2 text-[15px] text-white transition duration-300 hover:bg-black hover:text-white md:bg-white md:text-black">
+                        <span>Shop now</span> <MoveRight size={16} />
+                     </motion.button>
+                  </div>
                </div>
             </motion.div>
          </AnimatePresence>

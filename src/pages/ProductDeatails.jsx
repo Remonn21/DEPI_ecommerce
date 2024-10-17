@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slice/cart.slice";
 import { toggleWishList } from "@/redux/slice/wishlist.slice";
 import { toast } from "sonner";
+import ReviewsTab from "@/components/ReviewsTab";
 
 const ProductDetails = () => {
    const { id } = useParams();
@@ -203,7 +204,13 @@ const ProductDetails = () => {
                   {activeTab === "additional-info" && (
                      <p>Additional information about the product.</p>
                   )}
-                  {activeTab === "reviews" && <p>No reviews yet.</p>}
+                  {activeTab === "reviews" && (
+                     <ReviewsTab
+                        reviews={product.reviews}
+                        orderedByUser={product.orderedByUser}
+                        productId={product._id}
+                     />
+                  )}
                   {activeTab === "video" && (
                      <p>No video available for this product.</p>
                   )}

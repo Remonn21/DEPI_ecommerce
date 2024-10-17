@@ -1,15 +1,26 @@
 import { useMutation } from "react-query";
-import { publicClient } from "./axios";
+import { protectedClient } from "./axios";
+import { toast } from "sonner";
 
 export const createOrderRequest = async (formData) => {
-   const response = await publicClient.post("/products/statistics", formData);
+   const response = await protectedClient.post("/orders", formData);
 
    return response.data;
 };
 
 export const useCreateOrder = () => {
-   const { mutateAsync: createOrder, isLoading } =
-      useMutation(createOrderRequest);
+   const {
+      mutateAsync: createOrder,
+      isLoading,
+      isSuccess,
+   } = useMutation(createOrderRequest, {
+      onSuccess: () => {
+         toast.success("Order placed successfully");
+      },
+      onError: (error) => {
+         toast.error("Error while placing order");
+      },
+   });
 
-   return { createOrder, isLoading };
+   return { createOrder, isLoading, isSuccess };
 };

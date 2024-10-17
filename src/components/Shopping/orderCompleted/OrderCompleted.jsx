@@ -1,6 +1,9 @@
 import { CircleCheckBig, ClipboardList, Clock2 } from "lucide-react";
 import img from "../../../../public/image 1174.png";
+import { useNavigate } from "react-router-dom";
 export default function OrderCompleted() {
+   const navigate = useNavigate();
+
    return (
       <section>
          <div className="border-grey-off relative my-20 border-2 p-10 text-center md:mx-20">
@@ -13,7 +16,10 @@ export default function OrderCompleted() {
                be completed within 3-6 hours. You will receive an email
                confirmation when your order is completed.
             </p>
-            <button className="btn mt-10 bg-pink px-7 py-3 text-white">
+            <button
+               onClick={() => navigate("/products")}
+               className="btn mt-10 bg-pink px-7 py-3 text-white"
+            >
                Continue Shopping
             </button>
             <Clock2

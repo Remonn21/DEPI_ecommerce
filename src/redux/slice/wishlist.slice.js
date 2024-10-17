@@ -10,7 +10,6 @@ const wishlistSlice = createSlice({
    reducers: {
       toggleWishList(state, action) {
          const itemId = action.payload;
-         console.log("testing", itemId);
          if (!state.items.find((id) => id === itemId)) {
             state.items.push(itemId);
          } else {

@@ -1,6 +1,6 @@
 import { CircleCheck } from "lucide-react";
 
-export default function CartTotals({ totalAmount }) {
+export default function CartTotals({ totalAmount, onSubmit, isLoading }) {
    return (
       <div className="">
          <div id="total" className="bg-Purple-pantone p-10">
@@ -22,8 +22,12 @@ export default function CartTotals({ totalAmount }) {
                <CircleCheck className="mr-2 inline-block text-small-sm text-green" />
                Shipping & taxes calculated at checkout
             </p>
-            <button className="btn mt-10 w-full bg-green p-3 text-white">
-               Proceed to Checkout
+            <button
+               disabled={isLoading}
+               className="btn mt-10 w-full bg-green p-3 text-white"
+               onClick={onSubmit}
+            >
+               {isLoading ? "Placing order..." : "Proceed to Checkout"}
             </button>
          </div>
       </div>

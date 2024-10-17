@@ -2,10 +2,31 @@ import { useCreateOrder } from "@/api/order.api";
 import Container from "@/components/Container";
 import ShoppingCard from "@/components/Shopping/ShoppingCard";
 import { Header, Paragraph, SpecialHeader } from "@/components/SpecialHeader";
-import { Link } from "react-router-dom";
+import { clearCart } from "@/redux/slice/cart.slice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ShoppingCardPage() {
-   const { createOrder, isLoading } = useCreateOrder();
+   const { createOrder, isLoading, isSuccess } = useCreateOrder();
+   const navigate = useNavigate();
+   const cartItems = useSelector((state) => state.cart.items);
+   const dispatch = useDispatch();
+
+   const handlePlaceOrder = () => {
+      createOrder({
+         products: [...cartItems],
+         paymentMethod: "visa",
+         shippingAddress: "test",
+      });
+   };
+
+   useEffect(() => {
+      if (isSuccess) {
+         dispatch(clearCart());
+         navigate("/order-completed");
+      }
+   }, [isSuccess, dispatch, navigate]);
 
    return (
       <div>
@@ -21,7 +42,7 @@ export default function ShoppingCardPage() {
             </Container>
          </SpecialHeader>
          <Container>
-            <ShoppingCard onSubmit={createOrder} isSubmitting={isLoading} />
+            <ShoppingCard onSubmit={handlePlaceOrder} isLoading={isLoading} />
          </Container>
       </div>
    );

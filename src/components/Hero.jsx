@@ -5,7 +5,7 @@ const sliderData = [
    {
       title: "Modern Mobile Phones",
       description:
-         "Mobile phone technology has advanced rapidly over the years, with various",
+         "Mobile phone technology has advanced rapidly over the years, with various ",
       link: "/",
 
       image: "https://isotech-demo.myshopify.com/cdn/shop/files/2_ae5cc69e-78af-4aea-9cc7-bb616d558539.png?v=1695797615",
@@ -28,7 +28,7 @@ const Hero = () => {
    return (
       <div>
          <div className="grid max-w-full gap-8 md:grid-cols-4">
-            <div className="min-h-[60svh] overflow-hidden rounded-md md:col-span-3 md:row-span-2">
+            <div className="pb-100 min-h-[65svh] rounded-md md:col-span-3 md:row-span-2">
                <Slider sliderData={sliderData} />
             </div>
             <OfferCard

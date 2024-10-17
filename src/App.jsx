@@ -11,6 +11,7 @@ import ProductsPage from "./pages/ProductsPage";
 import ShoppingCardPage from "./pages/ShoppingCardPage";
 import OrderCompletedPage from "./pages/OrderCompletedPage";
 import HektoDemoPage from "./pages/HektoDemoPage";
+import AdminDashboard from "./pages/AdminDashboard";
 // import NotFound from "./pages/notfound";
 
 export default function App() {
@@ -26,6 +27,8 @@ export default function App() {
             <Route path="/order-completed" element={<OrderCompletedPage />} />
             <Route path="/hekto-demo" element={<HektoDemoPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+
             {/* <Route path="/contact" element={<Contact />} /> */}
             {/* <Route path="/faq" element={<Faq />} /> */}
             <Route path="*" element={<Navigate to="/" />} />

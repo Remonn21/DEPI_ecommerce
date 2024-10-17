@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 function Login() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const { loginUser } = useAuth();
+   const { loginUser, isLoading } = useAuth();
    const handleLogin = (e) => {
       e.preventDefault();
       loginUser({

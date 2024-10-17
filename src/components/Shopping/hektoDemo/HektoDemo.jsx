@@ -13,7 +13,7 @@ export default function HektoDemo() {
             </div>
             <div className="card-price">
                <HektoProducts />
-               <CartTotals />
+               <CartTotals totalAmount={2323} />
             </div>
          </div>
       </div>
