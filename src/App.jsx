@@ -12,7 +12,7 @@ import OrderCompletedPage from "./pages/OrderCompletedPage";
 import HektoDemoPage from "./pages/HektoDemoPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import ContactPage from "./pages/ContactPage";
-import Faq from "./pages/Faq";
+import FaqPage from "./pages/FaqPage";
 import NotfoundPage from "./pages/NotfoundPage";
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
             <Route path="/admin" element={<AdminDashboard />} />
 
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/faq" element={<Faq />} />
+            <Route path="/faq" element={<FaqPage />} />
             <Route path="*" element={<NotfoundPage />} />
          </Route>
       </Routes>
