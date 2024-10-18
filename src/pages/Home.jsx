@@ -23,6 +23,7 @@ export default function Home() {
                description="Pair text with an icon to focus on your store's features"
                href="/"
                image="https://isotech-demo.myshopify.com/cdn/shop/files/2_Banner_1.png?v=1695814614&width=1420"
+               loading="lazy"
             />
             <OfferCard
                className="flex-1"
@@ -32,6 +33,7 @@ export default function Home() {
                href="/"
                textClass="text-white"
                image="https://isotech-demo.myshopify.com/cdn/shop/files/2_Banner_2.png?v=1695814633&width=1420"
+               loading="lazy"
             />
          </div>
          <HotDeals products={results.data.topRated} />

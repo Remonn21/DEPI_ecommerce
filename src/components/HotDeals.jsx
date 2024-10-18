@@ -53,6 +53,7 @@ const HotDeals = ({ products }) => {
                textOffset="top"
                textClass="text-white"
                image="https://isotech-demo.myshopify.com/cdn/shop/files/Watch_Banner_7b3ae013-75a3-479c-a76f-7c2eea9d4a9e_360x.png?v=1696738786"
+               loading="lazy"
             />
             <div className="w-full sm:max-w-[70%]">
                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">

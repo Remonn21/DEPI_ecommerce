@@ -5,14 +5,15 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDeatails";
 import About from "./pages/About";
-// import Contact from "./pages/Contact";
-// import Faq from "./pages/Faq";
+
 import ProductsPage from "./pages/ProductsPage";
 import ShoppingCardPage from "./pages/ShoppingCardPage";
 import OrderCompletedPage from "./pages/OrderCompletedPage";
 import HektoDemoPage from "./pages/HektoDemoPage";
 import AdminDashboard from "./pages/AdminDashboard";
-// import NotFound from "./pages/notfound";
+import Contact from "./pages/Contact";
+import Faq from "./pages/Faq";
+import NotfoundPage from "./pages/NotfoundPage";
 
 export default function App() {
    return (
@@ -29,9 +30,9 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/admin" element={<AdminDashboard />} />
 
-            {/* <Route path="/contact" element={<Contact />} /> */}
-            {/* <Route path="/faq" element={<Faq />} /> */}
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="*" element={<NotfoundPage />} />
          </Route>
       </Routes>
    );

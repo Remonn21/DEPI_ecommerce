@@ -36,11 +36,13 @@ const ProductCard = ({ product }) => {
                   src={product.images[0]}
                   className="absolute block transition duration-500 group-hover:opacity-0"
                   alt=""
+                  loading="lazy"
                />
                <img
                   src={product.images[1]}
                   className="duration-400 absolute block scale-90 opacity-0 transition group-hover:scale-100 group-hover:opacity-100"
                   alt=""
+                  loading="lazy"
                />
             </div>
          </div>

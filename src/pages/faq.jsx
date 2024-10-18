@@ -1,4 +1,4 @@
-const FAQPage = () => {
+const Faq = () => {
    return (
       <div className="flex min-h-screen flex-col items-center justify-center p-4">
          <div className="grid w-full max-w-6xl grid-cols-1 gap-8 rounded-lg bg-white p-6 shadow-md md:grid-cols-2">
@@ -93,7 +93,7 @@ const FAQPage = () => {
                   </div>
                   <button
                      type="submit"
-                     className="bg-pink-500 hover:bg-pink-600 rounded-md px-4 py-2 text-white transition-colors"
+                     className="rounded-md bg-pink-500 px-4 py-2 text-white transition-colors hover:bg-pink-600"
                   >
                      Send Mail
                   </button>
@@ -104,4 +104,4 @@ const FAQPage = () => {
    );
 };
 
-export default FAQPage;
+export default Faq;

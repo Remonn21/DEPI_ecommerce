@@ -10,6 +10,7 @@ const OfferCard = ({
    textClass,
    textOffset,
    className,
+   loading,
 }) => {
    let offset = "translate-y-1/4";
    if (textOffset === "top") {
@@ -18,11 +19,12 @@ const OfferCard = ({
 
    return (
       <div
-         className={`group relative min-h-[30svh] cursor-pointer overflow-hidden rounded-md bg-navyBlue shadow-md ${className}`}
+         className={`group relative min-h-[20svh] cursor-pointer overflow-hidden rounded-md bg-navyBlue shadow-md lg:max-h-[280px] lg:min-h-max ${className}`}
       >
          <img
             src={image}
             className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+            loading={loading}
          />
          <div className={`absolute inset-0 flex ${offset} justify-start p-4`}>
             <div className={`${textClass ? textClass : "text-white"} `}>

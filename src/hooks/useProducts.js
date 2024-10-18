@@ -10,6 +10,7 @@ export const useSearchProducts = (searchState) => {
       ["searchProducts", searchState],
       () => searchProducts(searchState),
       {
+         enabled: !!searchState,
          // lsa hashof
       },
    );

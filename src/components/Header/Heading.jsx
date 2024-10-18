@@ -26,7 +26,7 @@ const Heading = () => {
             )}
          </AnimatePresence>
          <div className="">
-            <div className="mx-auto flex max-w-screen-xl items-center justify-between">
+            <div className="mx-auto flex w-full items-center justify-between lg:max-w-[95%] lg:px-0 xl:max-w-[90%]">
                <div className="md:hidden">
                   <Menu
                      className="text-xl"
@@ -53,8 +53,13 @@ const Heading = () => {
                {/* icons */}
                <div className="flex gap-4">
                   <Search size={20} className="md:hidden" />
-                  <User size={20} className="hidden md:block" />
-                  <div className="relative hidden md:block">
+                  <Link>
+                     <User
+                        size={20}
+                        className="hidden cursor-pointer md:block"
+                     />
+                  </Link>
+                  <div className="relative hidden cursor-pointer md:block">
                      <Heart size={20} />
                      <Badge className="text-sm absolute -top-[3px] right-0 flex w-1 -translate-y-1/2 translate-x-1/2 justify-center bg-navyBlue text-[10px] font-bold text-white">
                         {wishlist.items.length}

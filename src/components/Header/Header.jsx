@@ -6,7 +6,7 @@ import { Separator } from "../ui/separator";
 const Header = () => {
    return (
       <div>
-         <div className="mb-6 w-full bg-white px-6 pb-2 pt-4 shadow-md md:px-4">
+         <div className="mb-6 w-full bg-white px-5 pb-2 pt-4 shadow-md md:px-0">
             <Heading />
             <Separator className="my-4 hidden bg-gray-300 md:block" />
             <DesktopNav />

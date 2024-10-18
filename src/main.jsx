@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "sonner";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "./redux/store.js";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -25,5 +26,6 @@ createRoot(document.getElementById("root")).render(
             />
          </QueryClientProvider>
       </BrowserRouter>
+      <SpeedInsights />
    </StrictMode>,
 );

@@ -7,6 +7,7 @@ import {
    NavigationMenuList,
    NavigationMenuTrigger,
    navigationMenuTriggerStyle,
+   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
 const dropdowns = [
@@ -103,7 +104,7 @@ const dropdowns = [
 
 export default function DesktopNav() {
    return (
-      <div className="mx-auto hidden max-w-7xl items-center justify-between text-body-sm md:flex">
+      <div className="mx-auto hidden text-body-sm md:flex lg:max-w-[95%] xl:max-w-[90%]">
          <NavigationMenu>
             <NavigationMenuList>
                <NavigationMenuItem>
@@ -115,7 +116,7 @@ export default function DesktopNav() {
                   </Link>
                </NavigationMenuItem>
                {dropdowns.map((item) => (
-                  <NavigationMenuItem key={item.title}>
+                  <NavigationMenuItem className="relative" key={item.title}>
                      <NavigationMenuTrigger className="font-semibold text-gray hover:text-navyBlue">
                         <Link className="" to={item.href}>
                            {item.title}
@@ -148,6 +149,7 @@ export default function DesktopNav() {
                            </ul>
                         </div>
                      </NavigationMenuContent>
+                     {/* <NavigationMenuViewport /> */}
                   </NavigationMenuItem>
                ))}
                <NavigationMenuItem>

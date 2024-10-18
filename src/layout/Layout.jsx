@@ -8,7 +8,7 @@ const Layout = () => {
       <div className="">
          <OfferHeading />
          <Header />
-         <div className="mx-auto max-w-screen-xl px-8 pb-16 md:px-4">
+         <div className="mx-auto w-full px-4 pb-16 lg:max-w-[95%] lg:px-0 xl:max-w-[90%]">
             <Outlet />
          </div>
          <Footer />

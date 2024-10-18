@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { MoveRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Slider = ({ sliderData }) => {
    const [currentSlide, setCurrentSlide] = useState(0);
+   const navigate = useNavigate();
 
    useEffect(() => {
       const interval = setInterval(() => {
@@ -50,7 +52,7 @@ const Slider = ({ sliderData }) => {
          <AnimatePresence initial={false}>
             <motion.div
                key={currentSlide}
-               className="absolute inset-0 min-w-full"
+               className="absolute inset-0 min-w-full overflow-hidden rounded-md"
                initial="enter"
                animate="center"
                exit="exit"
@@ -64,17 +66,17 @@ const Slider = ({ sliderData }) => {
                   }}
                   src={sliderData[currentSlide].image}
                   alt={sliderData[currentSlide].title}
-                  className="h-[40svh] w-full rounded-md object-cover md:h-full"
+                  className="h-[40svh] w-full overflow-hidden object-cover md:h-full"
                />
 
                <div className="inset-0 -top-6 bg-white p-8 text-black md:absolute md:max-w-[50%] md:translate-y-1/4 md:bg-transparent md:text-white">
-                  <div className="space-y-6">
+                  <div className="space-y-1 md:space-y-6">
                      <motion.h2
                         variants={textVariant}
                         initial={"enter"}
                         animate="center"
                         exit="exit"
-                        className="text-h4 font-bold"
+                        className="text-h6 font-bold md:text-h4"
                      >
                         {sliderData[currentSlide].title}
                      </motion.h2>
@@ -90,11 +92,14 @@ const Slider = ({ sliderData }) => {
                            },
                         }}
                         exit="exit"
-                        className="font-normal text-[13ox] text-gray-800 md:text-gray-300"
+                        className="text-[13px] text-body-md font-normal text-gray-800 md:text-gray-300"
                      >
                         {sliderData[currentSlide].description}
                      </motion.p>
-                     <motion.button className="flex max-w-fit items-center gap-2 rounded-lg bg-navyBlue px-4 py-2 text-[15px] text-white transition duration-300 hover:bg-black hover:text-white md:bg-white md:text-black">
+                     <motion.button
+                        onClick={() => navigate("/products")}
+                        className="flex max-w-fit items-center gap-2 rounded-lg bg-navyBlue px-4 py-2 text-[15px] text-white transition duration-300 hover:bg-black hover:text-white md:bg-white md:text-black"
+                     >
                         <span>Shop now</span> <MoveRight size={16} />
                      </motion.button>
                   </div>
