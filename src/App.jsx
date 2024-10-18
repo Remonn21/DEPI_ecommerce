@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Layout from "./layout/Layout";
 import SignUp from "./pages/SignUp";
@@ -11,7 +11,7 @@ import ShoppingCardPage from "./pages/ShoppingCardPage";
 import OrderCompletedPage from "./pages/OrderCompletedPage";
 import HektoDemoPage from "./pages/HektoDemoPage";
 import AdminDashboard from "./pages/AdminDashboard";
-import Contact from "./pages/Contact";
+import ContactPage from "./pages/ContactPage";
 import Faq from "./pages/Faq";
 import NotfoundPage from "./pages/NotfoundPage";
 
@@ -30,7 +30,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/admin" element={<AdminDashboard />} />
 
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="*" element={<NotfoundPage />} />
          </Route>

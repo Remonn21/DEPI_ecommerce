@@ -1,4 +1,4 @@
-const Contact = () => {
+const ContactPage = () => {
    return (
       <div className="flex min-h-screen flex-col items-center justify-center p-8">
          <div className="w-full max-w-6xl bg-white p-8">
@@ -116,4 +116,4 @@ const Contact = () => {
    );
 };
 
-export default Contact;
+export default ContactPage;

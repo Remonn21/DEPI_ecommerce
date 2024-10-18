@@ -1,4 +1,4 @@
-const Faq = () => {
+const FaqPage = () => {
    return (
       <div className="flex min-h-screen flex-col items-center justify-center p-4">
          <div className="grid w-full max-w-6xl grid-cols-1 gap-8 rounded-lg bg-white p-6 shadow-md md:grid-cols-2">
@@ -104,4 +104,4 @@ const Faq = () => {
    );
 };
 
-export default Faq;
+export default FaqPage;
