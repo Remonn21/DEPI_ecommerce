@@ -66,7 +66,7 @@ const Slider = ({ sliderData }) => {
                   }}
                   src={sliderData[currentSlide].image}
                   alt={sliderData[currentSlide].title}
-                  className="h-[40svh] w-full overflow-hidden object-cover md:h-full"
+                  className="h-[40svh] w-full overflow-hidden object-cover md:h-full md:rounded-md"
                />
 
                <div className="inset-0 -top-6 bg-white p-8 text-black md:absolute md:max-w-[50%] md:translate-y-1/4 md:bg-transparent md:text-white">

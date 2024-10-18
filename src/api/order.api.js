@@ -17,8 +17,10 @@ export const useCreateOrder = () => {
       onSuccess: () => {
          toast.success("Order placed successfully");
       },
-      onError: (error) => {
-         toast.error("Error while placing order");
+      onError: async (error) => {
+         toast.error(
+            error.response.data.message || "Error while placing order",
+         );
       },
    });
 

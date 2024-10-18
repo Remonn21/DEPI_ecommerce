@@ -1,4 +1,5 @@
 import { Star, ShoppingCart, Heart, Search } from "lucide-react";
+import StarRating from "./StarRating";
 
 export default function ProductCardList({
    name,
@@ -54,17 +55,12 @@ export default function ProductCardList({
                </div>
 
                <div className="mb-2 flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                     <Star
-                        key={i}
-                        className={`size-5 ${i < rating ? "text-gold fill-gold" : "fill-gray-200 text-gray-200"}`}
-                     />
-                  ))}
+                  <StarRating rating={rating} />
                </div>
-               <p className="mb-4 text-gray-100">{description}</p>
+               <p className="mb-4 text-gray-600">{description}</p>
             </div>
 
-            <div className="flex space-x-4">
+            <div className="relative z-50 flex space-x-4">
                <button className="p-2">
                   <ShoppingCart className="size-6 text-navyBlue-off duration-300 hover:scale-110 hover:fill-navyBlue" />
                </button>

@@ -12,6 +12,7 @@ const ReviewsTab = ({ orderedByUser, reviews, productId }) => {
    });
 
    const [userReviews, setUserReviews] = useState(reviews);
+   const [reviewInputShown, setReviewInputShown] = useState(false);
    // handle the validations here
    const handleReviewSubmit = () => {
       createReview({
@@ -30,7 +31,7 @@ const ReviewsTab = ({ orderedByUser, reviews, productId }) => {
          <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">Reviews</h2>
 
-            {orderedByUser && (
+            {orderedByUser ? (
                <Button
                   disabled={isLoading}
                   className="bg-navyBlue font-semibold text-white hover:bg-navyBlue/90"
@@ -38,29 +39,37 @@ const ReviewsTab = ({ orderedByUser, reviews, productId }) => {
                >
                   {isLoading ? "Submitting..." : "Create a review"}
                </Button>
+            ) : (
+               <p className="pr-2 font-bold">
+                  You can&apos;t review a product you didn&apos;t buy
+               </p>
             )}
          </div>
          <div>
-            {userReviews.map((review) => (
-               <div
-                  className="flex flex-col gap-1 border-b-2 border-gray-200 pb-2"
-                  key={review._id}
-               >
-                  <div className="flex max-w-[450px] flex-col pt-2">
-                     <h2 className="font-bold">{review.username}</h2>
-                     <StarRating rating={review.rating} />
+            {userReviews ? (
+               userReviews.map((review) => (
+                  <div
+                     className="flex flex-col gap-1 border-b-2 border-gray-200 pb-2"
+                     key={review._id}
+                  >
+                     <div className="flex max-w-[450px] flex-col pt-2">
+                        <h2 className="font-bold">{review.username}</h2>
+                        <StarRating rating={review.rating} />
+                     </div>
+                     <div className="text-black/85">
+                        Reviewed on{" "}
+                        <span className="font-bold">
+                           {format(review.createdAt, "MMMM dd, yyyy")}
+                        </span>
+                     </div>
+                     <div className="border-radius mt-1 font-semibold">
+                        &quot;{review.comment}&quot;
+                     </div>
                   </div>
-                  <div className="text-black/85">
-                     Reviewed on{" "}
-                     <span className="font-bold">
-                        {format(review.createdAt, "MMMM dd, yyyy")}
-                     </span>
-                  </div>
-                  <div className="border-radius mt-1 font-semibold">
-                     &quot;{review.comment}&quot;
-                  </div>
-               </div>
-            ))}
+               ))
+            ) : (
+               <p>No reviews found</p>
+            )}
          </div>
       </div>
    );

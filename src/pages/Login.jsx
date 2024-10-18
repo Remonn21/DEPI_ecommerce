@@ -1,14 +1,19 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import BrandLogos from "@/components/BrandLogos";
 import { useAuth } from "@/hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "@/redux/slice/user.slice";
 
 function Login() {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const { loginUser, isLoading } = useAuth();
+   const { loginUser, isLoading, isSuccess, isError } = useAuth();
+   const navigate = useNavigate();
+   const user = useSelector((state) => state.user);
+   const dispatch = useDispatch();
    const handleLogin = (e) => {
       e.preventDefault();
       loginUser({
@@ -16,6 +21,14 @@ function Login() {
          password,
       });
    };
+
+   useEffect(() => {
+      if (user.isAuthenticated) navigate("/", { replace: true });
+      if (isSuccess) {
+         dispatch(loginSuccess(user));
+         navigate("/");
+      }
+   }, [user, isSuccess]);
 
    return (
       <>

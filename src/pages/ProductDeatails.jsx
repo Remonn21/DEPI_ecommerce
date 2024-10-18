@@ -63,10 +63,8 @@ const ProductDetails = () => {
       },
    ];
 
-   const toggleWishListHandler = (id) => {
-      const action = wishlist.items.includes(id) ? "removed" : "added";
-      dispatch(toggleWishList(id));
-      toast.info(`Item ${action} to wishlist!`);
+   const toggleWishListHandler = (prodcut) => {
+      dispatch(toggleWishList(prodcut));
    };
 
    const addToCartHandler = (product) => {
@@ -140,15 +138,15 @@ const ProductDetails = () => {
                   {/* Add to Cart and Wishlist */}
                   <div className="mt-6 flex space-x-4">
                      <button
-                        className="rounded-lg bg-pink px-6 py-2 text-white shadow transition hover:bg-red"
+                        className="rounded-lg bg-navyBlue px-6 py-2 text-white shadow transition hover:bg-navyBlue/75"
                         onClick={() => addToCartHandler(product)}
                      >
                         Add to Cart
                      </button>
                      <button
-                        onClick={() => toggleWishListHandler(product._id)}
+                        onClick={() => toggleWishListHandler(product)}
                         className={`transition-colors ${
-                           wishlist.items.includes(product._id)
+                           wishlist.items.find((prd) => prd._id === product._id)
                               ? "text-red"
                               : "text-black"
                         } text-2xl hover:text-red`}
@@ -232,9 +230,7 @@ const ProductDetails = () => {
                                  ? "text-red"
                                  : "text-black"
                            }`}
-                           onClick={() =>
-                              toggleWishListHandler(relatedProduct.id)
-                           }
+                           onClick={() => toggleWishListHandler(relatedProduct)}
                         >
                            <FaHeart />
                         </button>

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -18,7 +17,7 @@ protectedClient.interceptors.response.use(
    async (error) => {
       if (error.response.status === 401) {
          // if unauthorized access ==> redirect to login
-         Navigate("/login");
+         window.location.href = "/login";
       }
       return Promise.reject(error);
    },

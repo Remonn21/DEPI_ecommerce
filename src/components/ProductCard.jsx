@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
    const wishlist = useSelector((state) => state.wishlist);
 
    const toggleWishListHandler = () => {
-      dispatch(toggleWishList(product._id));
+      dispatch(toggleWishList(product));
    };
 
    return (
@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
                className="group absolute right-4 top-4 z-10 rounded-full bg-white p-2 shadow-lg transition duration-500 hover:bg-black"
             >
                <FaHeart
-                  className={`${wishlist.items.includes(product._id) ? "text-red" : ""} size-5 group-hover:text-red`}
+                  className={`${wishlist.items.find((prd) => prd._id === product._id) ? "text-red" : ""} size-5 group-hover:text-red`}
                />
             </div>
             <div
@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
             >
                <img
                   src={product.images[0]}
-                  className="absolute block transition duration-500 group-hover:opacity-0"
+                  className="absolute block w-full object-contain transition duration-500 group-hover:opacity-0"
                   alt=""
                   loading="lazy"
                />

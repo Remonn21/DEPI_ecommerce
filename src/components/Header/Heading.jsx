@@ -6,7 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const Heading = () => {
+const Heading = ({ toggleWishList }) => {
    const [toggleSideBar, setToggleSideBar] = useState(false);
    const cart = useSelector((state) => state.cart);
    const wishlist = useSelector((state) => state.wishlist);
@@ -59,7 +59,10 @@ const Heading = () => {
                         className="hidden cursor-pointer md:block"
                      />
                   </Link>
-                  <div className="relative hidden cursor-pointer md:block">
+                  <div
+                     onClick={toggleWishList}
+                     className="relative hidden cursor-pointer md:block"
+                  >
                      <Heart size={20} />
                      <Badge className="text-sm absolute -top-[3px] right-0 flex w-1 -translate-y-1/2 translate-x-1/2 justify-center bg-navyBlue text-[10px] font-bold text-white">
                         {wishlist.items.length}

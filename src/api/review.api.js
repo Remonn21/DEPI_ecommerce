@@ -18,8 +18,10 @@ export const useCreateReview = () => {
       onSuccess: () => {
          toast.success("review created successfully");
       },
-      onError: () => {
-         toast.error("Error while creating review");
+      onError: (error) => {
+         toast.error(
+            error.response.data.message || "Error while placing order",
+         );
       },
    });
 

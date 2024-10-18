@@ -27,8 +27,8 @@ const sliderData = [
 const Hero = () => {
    return (
       <div>
-         <div className="grid max-w-full gap-4 md:grid-cols-4 lg:gap-8">
-            <div className="pb-100 sm:min-h[50svh] min-h-[60svh] rounded-md md:col-span-3 md:row-span-2 lg:max-h-[500px] lg:min-h-max">
+         <div className="grid max-w-full gap-4 md:grid-cols-4 lg:gap-6">
+            <div className="pb-100 sm:min-h[50svh] min-h-[60svh] rounded-md md:col-span-3 md:row-span-2 lg:max-h-[560px] lg:min-h-max">
                <Slider sliderData={sliderData} />
             </div>
             <OfferCard
@@ -36,7 +36,7 @@ const Hero = () => {
                linkTxt="shop now"
                textOffset="top"
                href="/"
-               className="min-h-[20svh]"
+               className="lg:max-h-[280px] lg:min-h-max"
                description="UP to 50% off"
                image="https://isotech-demo.myshopify.com/cdn/shop/files/Frame_14.png?v=1695797658&width=1500"
             />
@@ -44,6 +44,7 @@ const Hero = () => {
                title="Hot deals"
                linkTxt="shop now"
                textOffset="top"
+               className="lg:max-h-[280px] lg:min-h-max"
                href="/"
                description="UP to 30% off"
                image="https://isotech-demo.myshopify.com/cdn/shop/files/Frame_15.png?v=1695797682&width=1500"

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "sonner";
 
 const initialState = {
    items: [],
@@ -9,11 +10,18 @@ const wishlistSlice = createSlice({
    initialState,
    reducers: {
       toggleWishList(state, action) {
-         const itemId = action.payload;
-         if (!state.items.find((id) => id === itemId)) {
-            state.items.push(itemId);
+         const product = action.payload;
+         const existingItem = state.items.find(
+            (item) => product._id === item._id,
+         );
+         if (!existingItem) {
+            state.items.push(product);
+            toast.info("item added to wishlist");
          } else {
-            state.items = state.items.filter((id) => id !== itemId);
+            state.items = state.items.filter(
+               (item) => item._id !== product._id,
+            );
+            toast.info("item removed from wishlist");
          }
       },
       //   removeFromWishlist(state, action) {

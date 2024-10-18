@@ -1,7 +1,13 @@
 import { publicClient } from "./axios";
 
 export const searchProducts = async (searchState) => {
-   const { page = 1, limit = 10, searchQuery = "", sortBy = "" } = searchState;
+   const {
+      page = 1,
+      limit = 10,
+      searchQuery = "",
+      sortBy = "",
+      category = "",
+   } = searchState;
    const params = new URLSearchParams();
 
    if (sortBy) {
@@ -12,6 +18,7 @@ export const searchProducts = async (searchState) => {
    }
 
    params.set("searchQuery", searchQuery);
+   params.set("category", category);
    params.set("page", page);
    params.set("limit", limit);
 

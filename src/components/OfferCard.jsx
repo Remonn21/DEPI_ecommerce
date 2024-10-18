@@ -19,7 +19,7 @@ const OfferCard = ({
 
    return (
       <div
-         className={`group relative min-h-[20svh] cursor-pointer overflow-hidden rounded-md bg-navyBlue shadow-md lg:max-h-[280px] lg:min-h-max ${className}`}
+         className={`group relative min-h-[20svh] cursor-pointer overflow-hidden rounded-md bg-navyBlue shadow-md ${className}`}
       >
          <img
             src={image}

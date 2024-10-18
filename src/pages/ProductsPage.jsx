@@ -3,19 +3,27 @@ import ProductList from "@/components/ProductList";
 import Sidebar from "@/components/Sidebar";
 import { useSearchProducts } from "@/hooks/useProducts";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+const defautValues = {
+   searchQuery: "",
+   category: "",
+   sortOption: "",
+   sortOrder: "",
+   page: 1,
+   limit: 10,
+};
 
 export default function ProductsPage() {
    const [view, setView] = useState("grid");
-   const [searchInputs, setSearchInputs] = useState({});
+   const [searchInputs, setSearchInputs] = useState(defautValues);
    const [searchState, setSearchState] = useState(undefined);
    const { data: results, isLoading } = useSearchProducts(searchState);
-   const navigate = useNavigate();
    const firstInit = useRef(true);
    useEffect(() => {
       const searchParams = new URLSearchParams(window.location.search);
 
       const searchQuery = searchParams.get("searchQuery") || "";
+      const category = searchParams.get("category") || "";
       const sortOption = searchParams.get("sortOption") || "";
       const sortOrder = searchParams.get("sortOption") || "";
       const page = searchParams.get("page")
@@ -24,8 +32,22 @@ export default function ProductsPage() {
       const limit = searchParams.get("limit")
          ? Number(searchParams.get("limit"))
          : undefined;
-      setSearchState({ searchQuery, sortOption, sortOrder, page, limit });
-      setSearchInputs({ searchQuery, sortOption, sortOrder, page, limit });
+      setSearchState({
+         searchQuery,
+         sortOption,
+         sortOrder,
+         page,
+         limit,
+         category,
+      });
+      setSearchInputs({
+         searchQuery,
+         sortOption,
+         sortOrder,
+         page,
+         limit,
+         category,
+      });
       firstInit.current = false;
    }, []);
 
